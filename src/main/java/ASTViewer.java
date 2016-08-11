@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.JFileChooser;
 
 import org.eclipse.cdt.core.dom.ast.IASTPreprocessorIncludeStatement;
 import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
@@ -27,8 +28,14 @@ public class ASTViewer{
 
     public ASTViewer() throws CoreException {
         JFrame frame = new JFrame("ASTViewer");
+        
+        JFileChooser fileChooser = new JFileChooser();
+        
+        int result = fileChooser.showOpenDialog (frame);
+        if (result != JFileChooser.APPROVE_OPTION)
+            return;
 
-        FileContent fileContent = FileContent.createForExternalFileLocation("./docs/DeviceManager.h");
+        FileContent fileContent = FileContent.createForExternalFileLocation (fileChooser.getSelectedFile().toString());
 
         Map definedSymbols = new HashMap();
         String[] includePaths = new String[0];
