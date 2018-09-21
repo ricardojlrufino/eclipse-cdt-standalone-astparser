@@ -1,5 +1,6 @@
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,8 @@ public class ASTViewer{
         
         JFileChooser fileChooser = new JFileChooser();
         
+        fileChooser.setCurrentDirectory(new File("./docs"));
+       
         int result = fileChooser.showOpenDialog (frame);
         if (result != JFileChooser.APPROVE_OPTION)
             return;
